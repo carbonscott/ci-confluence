@@ -18,11 +18,11 @@ via REST from this node (verified HTTP 200). Use the DB ONLY to discover page ID
 ```
 bin/
   extract.py        # discovery + REST fetch + parse -> snippets/ + manifest.json   (Subagent C)
-  run_checks.py     # read manifest, run tiered checks, write reports/results.json   (Subagent D)
-cache/storage/<page_id>.xml     # cached raw storage XML (so dev re-runs don't hit REST)
+  run_checks.py     # read manifest, run tiered checks, write var/reports/results.json   (Subagent D)
+var/cache/storage/<page_id>.xml # cached raw storage XML (so dev re-runs don't hit REST)
 snippets/<page_id>/<NNN>.<ext>  # one faithful code file per macro
 manifest.json                    # index of all snippets (schema below)
-reports/                         # check outputs
+var/reports/                     # check outputs
 notes/                           # iter-1 findings (already present)
 ```
 
@@ -35,7 +35,7 @@ notes/                           # iter-1 findings (already present)
   `/sdf/group/lcls/ds/dm/apps/dev/tools/confluence-doc/` (look for `env.local` /
   `CONFLUENCE_TOKEN_FILE` / base URL in the python config). NEVER print the token value.
 - Rate limit: 5 req/min. Sleep ~13s between requests. Cache each page's XML to
-  `cache/storage/<page_id>.xml`; if cache exists and `--refresh` not given, use it.
+  `var/cache/storage/<page_id>.xml`; if cache exists and `--refresh` not given, use it.
 
 ## Parsing (used by extract.py) — keep this a SEPARABLE function
 `parse_storage(xml) -> list[ {language, code, index_on_page, anchor} ]`
@@ -83,7 +83,7 @@ A single `category` per snippet, chosen by these rules (first match wins):
 Heuristics are best-effort; when unsure, pick the cheaper/safer tier.
 
 ## run_checks.py contract (Subagent D)
-`python run_checks.py [--manifest manifest.json] [--tier 1|2] [--category C] [--json reports/results.json]`
+`python run_checks.py [--manifest manifest.json] [--tier 1|2] [--category C] [--json var/reports/results.json]`
 - Tier 1 (default, NO psana env, runs anywhere incl. login node):
   - python-*  -> syntax check via `ast.parse` (compile). Optionally ruff if available.
   - shell-lint -> `bash -n`; also `shellcheck` if on PATH (treat missing as skip, not fail).
@@ -93,7 +93,7 @@ Heuristics are best-effort; when unsure, pick the cheaper/safer tier.
     `source /sdf/group/lcls/ds/ana/sw/conda2/manage/bin/psconda.sh && python <file>`.
     (psconda is NOT set -u clean: use `set -eo pipefail`, no -u.) For tier 2, import-smoke
     should ideally only execute the import lines, but a full run is acceptable v1.
-- Output: write `reports/results.json` = `{summary:{total,passed,failed,skipped}, results:[{id,category,tier,status,detail}]}`
+- Output: write `var/reports/results.json` = `{summary:{total,passed,failed,skipped}, results:[{id,category,tier,status,detail}]}`
   and print a one-line-per-snippet table + a final summary. Exit nonzero iff any FAILED.
 - Develop against a tiny self-made fixture manifest+snippets until C's real manifest lands;
   must then work unmodified on the real manifest.

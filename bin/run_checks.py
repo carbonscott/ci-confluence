@@ -448,8 +448,9 @@ def main(argv=None):
     )
     parser.add_argument(
         "--json",
-        default="reports/results.json",
-        help="Where to write the JSON results report.",
+        default=os.environ.get("CI_REPORTS_JSON", "var/reports/results.json"),
+        help="Where to write the JSON results report "
+             "(default: var/reports/results.json; override with $CI_REPORTS_JSON).",
     )
     args = parser.parse_args(argv)
 

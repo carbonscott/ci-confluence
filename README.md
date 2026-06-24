@@ -37,14 +37,14 @@ daily cron. That is the recommended Phase 2 (see below).
 ```
 bin/extract.py     DB discovery -> REST fetch (cached) -> parse <ac:code> macros
                    -> snippets/<page_id>/<NNN>.<ext>  +  manifest.json
-bin/run_checks.py  read manifest -> tiered checks -> reports/*.json  (exit nonzero iff any FAIL)
+bin/run_checks.py  read manifest -> tiered checks -> var/reports/*.json  (exit nonzero iff any FAIL)
 bin/ci.sh          run the checks on a milano compute node via salloc/srun (re-runnable)
 bin/ci.sbatch      one-shot sbatch equivalent
 ```
 
 ### Extraction (10 pages, 73 snippets)
 Discovered the psana page + 9 descendants (2 grandchildren the original note missed),
-fetched each via Bearer-auth REST (5 req/min limit, cached to `cache/storage/`), parsed
+fetched each via Bearer-auth REST (5 req/min limit, cached to `var/cache/storage/`), parsed
 60+ code macros into **73 byte-faithful snippet files** (md5-verified identical to the
 storage CDATA).
 
@@ -101,6 +101,12 @@ Ran on milano node `sdfmilan242` (Slurm job `29760220`), exclusive whole node
 
 ## How to re-run (maintainer)
 
+All regenerable output (REST cache, check reports, ruff cache, Slurm logs) now lives
+under `var/`; `rm -rf var` resets the workspace to a clean state. On a cold clone,
+`mkdir -p var/reports` before the first `sbatch bin/ci.sbatch` — Slurm opens the
+`--output` log (`var/reports/ci-<jobid>.out`) before the script body runs, so the
+directory must already exist. (`ci.sh` and `ci.sbatch`'s own steps create it otherwise.)
+
 From the workspace root on `sdfiana025`:
 
 ```bash
@@ -118,7 +124,7 @@ bash bin/ci.sh --tier 1 --time 00:20:00
 bash bin/ci.sh --jobid <existing>      # reuse an allocation you already hold (won't cancel it)
 
 # one-shot batch alternative
-sbatch bin/ci.sbatch                   # output -> reports/ci-<jobid>.out
+sbatch bin/ci.sbatch                   # output -> var/reports/ci-<jobid>.out
 ```
 
 `ci.sh` exits nonzero whenever any snippet FAILs — correct CI semantics. Expect a

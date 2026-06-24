@@ -1,13 +1,15 @@
-# Regenerable run outputs (not tracked)
-cache/
-reports/
+# All regenerable, ephemeral output lives here -- `rm -rf var` to reset.
+var/
+
+# uv / Python virtualenv + bytecode
+.venv/
+__pycache__/
+*.py[cod]
+
+# Safety net: ruff cache is redirected to var/ruff via [tool.ruff] cache-dir;
+# this catches a stray bare-`ruff` run that ignores the project config.
 .ruff_cache/
 
 # Scratch Slurm logs (notes/iter1-*.md stays tracked)
 notes/ci-smoke*.out
 notes/ci-smoke*.sbatch
-
-# uv / Python
-.venv/
-__pycache__/
-*.py[cod]

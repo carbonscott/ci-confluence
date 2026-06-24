@@ -670,7 +670,13 @@ def main(argv=None):
     parser.add_argument(
         "--out",
         default=".",
-        help="Workspace root: snippets/, cache/, manifest.json are written here.",
+        help="Workspace root: snippets/ and manifest.json are written here.",
+    )
+    parser.add_argument(
+        "--cache-dir",
+        default=os.environ.get("CONFLUENCE_CACHE_DIR"),
+        help="Dir for the REST XML cache (default: <out>/var/cache/storage). "
+             "Override with this flag or $CONFLUENCE_CACHE_DIR.",
     )
     parser.add_argument(
         "--base-url",
@@ -696,7 +702,11 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     out_dir = os.path.abspath(args.out)
-    cache_dir = os.path.join(out_dir, "cache", "storage")
+    cache_dir = (
+        os.path.abspath(args.cache_dir)
+        if args.cache_dir
+        else os.path.join(out_dir, "var", "cache", "storage")
+    )
 
     # 1. Discovery.
     print(f"[discover] reading {args.db}", file=sys.stderr)

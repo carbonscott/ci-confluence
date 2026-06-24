@@ -4,7 +4,7 @@
 #
 # Submit from the workspace root on the login node:
 #     sbatch bin/ci.sbatch
-# Output (table + summaries) lands in reports/ci-<jobid>.out.
+# Output (table + summaries) lands in var/reports/ci-<jobid>.out.
 #
 # Runs tier 1 (syntax/lint) then tier 2 (psana2 import-smoke, sourcing psconda),
 # and exits NONZERO iff any tier reported a FAILED snippet. Tier-2 failures do not
@@ -18,7 +18,7 @@
 #SBATCH --mem=0
 #SBATCH --time=00:30:00
 #SBATCH --job-name=ci-confluence
-#SBATCH --output=reports/ci-%j.out
+#SBATCH --output=var/reports/ci-%j.out
 
 set -eo pipefail   # NOT -u: psconda's setup script is not set -u clean.
 
@@ -32,7 +32,7 @@ else
   WS="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 fi
 cd "$WS"
-mkdir -p reports
+mkdir -p var/reports
 
 echo "=== ci.sbatch on $(hostname) (job ${SLURM_JOB_ID:-?}) workspace=$WS ==="
 
@@ -40,7 +40,7 @@ echo "=== ci.sbatch on $(hostname) (job ${SLURM_JOB_ID:-?}) workspace=$WS ==="
 echo
 echo "=== TIER 1 (syntax/lint) ==="
 set +e
-python3 bin/run_checks.py --tier 1 --json reports/tier1-milano.json
+python3 bin/run_checks.py --tier 1 --json var/reports/tier1-milano.json
 TIER1_RC=$?
 set -e
 echo ">> tier 1 exit: $TIER1_RC"
@@ -49,7 +49,7 @@ echo ">> tier 1 exit: $TIER1_RC"
 echo
 echo "=== TIER 2 (psana2 import-smoke) ==="
 set +e
-( set -eo pipefail; source "$PSCONDA"; python bin/run_checks.py --tier 2 --json reports/tier2-milano.json )
+( set -eo pipefail; source "$PSCONDA"; python bin/run_checks.py --tier 2 --json var/reports/tier2-milano.json )
 TIER2_RC=$?
 set -e
 echo ">> tier 2 exit: $TIER2_RC"

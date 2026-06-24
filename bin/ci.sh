@@ -146,8 +146,8 @@ esac
 # ---------------------------------------------------------------------------
 TIER1_RC="n/a"
 TIER2_RC="n/a"
-TIER1_JSON="reports/tier1-milano.json"
-TIER2_JSON="reports/tier2-milano.json"
+TIER1_JSON="var/reports/tier1-milano.json"
+TIER2_JSON="var/reports/tier2-milano.json"
 
 run_tier1=0
 run_tier2=0
