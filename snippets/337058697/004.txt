@@ -1,0 +1,5 @@
+    for evt orun.events():
+        o = det.raw
+        raw = o.raw(evt)
+        clb = o.calib(evt)
+        img = o.image(evt)

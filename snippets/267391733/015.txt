@@ -1,0 +1,3 @@
+drp-neh-cmp003:~$ ls /dev/shm/
+PdsMonitorSharedMemory_tmo
+drp-neh-cmp003:~$

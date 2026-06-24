@@ -1,0 +1,12 @@
+# direct access to calibration constants and derived arrays
+peds = o._pedestals()
+gain = o._gain() # ADU/keV
+gfac = o._gain_factor() # keV/ADU
+rms  = o._rms()
+status = o._status()
+
+arrx, arry, arrz = o._pixel_coords(do_tilt=True, cframe=0)
+indx, indy, indz = o._pixel_coord_indexes(pix_scale_size_um=None, xy0_off_pix=None, do_tilt=True, cframe=0)
+  
+# array of the common mode increment
+incr = o._common_mode_increment(evt, cmpars=(0,7,100,10))

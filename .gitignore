@@ -1,0 +1,13 @@
+# Regenerable run outputs (not tracked)
+cache/
+reports/
+.ruff_cache/
+
+# Scratch Slurm logs (notes/iter1-*.md stays tracked)
+notes/ci-smoke*.out
+notes/ci-smoke*.sbatch
+
+# uv / Python
+.venv/
+__pycache__/
+*.py[cod]

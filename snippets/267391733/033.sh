@@ -1,0 +1,1 @@
+sbatch submit_run_andor.sh rixc00121 121

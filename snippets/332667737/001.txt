@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------
+WARNING: Open MPI failed to TCP connect to a peer MPI process.  This
+should not happen.
+
+Your Open MPI job may now hang or fail.
+  Local host: drp-srcf-eb010
+  PID:        130465
+  Message:    connect() to 172.21.164.90:1055 failed
+  Error:      Operation now in progress (115)
+--------------------------------------------------------------------------

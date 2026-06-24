@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-06-24T00:00:00Z",
+  "source": "fixture-handmade",
+  "pages": [
+    {
+      "page_id": "FIXTURE",
+      "title": "fixture",
+      "url": "https://example.invalid/fixture"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "FIXTURE-001",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 1,
+      "language": "python",
+      "category": "python-lint",
+      "path": "fixture/snippets/ok.py",
+      "n_lines": 10,
+      "anchor": "valid python",
+      "notes": "should PASS"
+    },
+    {
+      "id": "FIXTURE-002",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 2,
+      "language": "python",
+      "category": "python-lint",
+      "path": "fixture/snippets/bad.py",
+      "n_lines": 3,
+      "anchor": "broken python",
+      "notes": "should FAIL (SyntaxError)"
+    },
+    {
+      "id": "FIXTURE-003",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 3,
+      "language": "bash",
+      "category": "shell-lint",
+      "path": "fixture/snippets/ok.sh",
+      "n_lines": 9,
+      "anchor": "valid bash",
+      "notes": "should PASS"
+    },
+    {
+      "id": "FIXTURE-004",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 4,
+      "language": "bash",
+      "category": "shell-lint",
+      "path": "fixture/snippets/bad.sh",
+      "n_lines": 3,
+      "anchor": "broken bash",
+      "notes": "should FAIL (bash -n)"
+    },
+    {
+      "id": "FIXTURE-005",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 5,
+      "language": "text",
+      "category": "non-testable",
+      "path": "fixture/snippets/transcript.txt",
+      "n_lines": 4,
+      "anchor": "console transcript",
+      "notes": "should SKIP"
+    }
+  ]
+}

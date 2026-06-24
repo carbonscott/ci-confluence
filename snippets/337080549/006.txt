@@ -1,0 +1,9 @@
+m = Mask(det)
+m.set_mask(**kwa) # forced update of cached mask, **kwa - the same list of keyword arguments as in class Mask w/o det.
+mask = m.mask(**kwa) # returns cached mask, **kwa - the same list of keyword arguments as in class Mask w/o det.
+mask = m.mask_default()
+mask = m.mask_calib_or_default() # if available returns mask from "pixel_mask" calibration type, otherwise array of ones. 
+mask = m.mask_from_status(status_bits=0xffff, stextra_bits:(1<<64)-1, gain_range_inds=(0,1,2,3,4), dtype=DTYPE_MASK)
+mask = m.mask_edges(width=0, edge_rows=1, edge_cols=1, dtype=DTYPE_MASK)
+mask = m.mask_center(wcenter=0, center_rows=1, center_cols=1, dtype=DTYPE_MASK)
+mask = m.mask_neighbors(mask, rad=9, ptrn='r')

@@ -1,0 +1,10 @@
+(ps-4.5.10) psanagpu101:~$ detnames -e exp=tmoc00118,run=222,dir=/sdf/data/lcls/ds/prj/public01/xtc | more
+-----------------------------------------------------------------
+Detector Name             | Epics Name                           
+-----------------------------------------------------------------
+StaleFlags                |                                      
+Keithley_Sum              | EM2K0:XGMD:HPS:KeithleySum           
+IM2K4_XrayPower           | IM2K4:PPM:SPM:VOLT_RBV               
+IM3K4_XrayPower           | IM3K4:PPM:SPM:VOLT_RBV               
+IM4K4_XrayPower           | IM4K4:PPM:SPM:VOLT_RBV               
+etc.     

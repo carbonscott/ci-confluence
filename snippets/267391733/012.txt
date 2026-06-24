@@ -1,0 +1,10 @@
+(ps-4.3.2) psanagpu102:lcls2$ detnames -s exp=rixx43518,run=45,dir=/sdf/data/lcls/ds/prj/public01/xtc
+--------------------------
+Name           | Data Type
+--------------------------
+motor1         | raw      
+motor2         | raw      
+step_value     | raw      
+step_docstring | raw      
+--------------------------
+(ps-4.3.2) psanagpu102:lcls2$  

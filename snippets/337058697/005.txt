@@ -1,0 +1,4 @@
+kwa = <dict-of-mask-parameters>
+a = o.calib(evt, cmpars=(7,2,100,10), **kwa)
+a = o.image(evt, nda=None, **kwa) # reduced shape for available segment only
+a = o.image(evt, nda=None, value_for_missing_segments=800, **kwa) # full image including missing segments

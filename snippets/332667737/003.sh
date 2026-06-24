@@ -1,0 +1,1 @@
+export OMPI_MCA_btl_tcp_if_exclude=eno1

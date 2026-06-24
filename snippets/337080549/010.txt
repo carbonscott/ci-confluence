@@ -1,0 +1,6 @@
+# on pcds:
+roicon 1 -g /cds/group/psdm/detector/data_test/geometry/geo-epix10ka2m-16-segment.data -i test-2d-mask.npy -t
+# or on s3df:
+roicon 1 -g /sdf/group/lcls/ds/ana/detector/data_test/geometry/geo-epix10ka2m-16-segment.data -i test-2d-mask.npy -t
+roicon 2 ... runs Mask Editor - TBD
+roicon 3 -g /sdf/group/lcls/ds/ana/detector/data_test/geometry/geo-epix10ka2m-16-segment.data -m test-2d-mask.npy -n test-3d-mask.npy

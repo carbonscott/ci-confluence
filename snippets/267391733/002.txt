@@ -1,0 +1,9 @@
+(ps-4.1.0) psanagpu101:lcls2$ detnames exp=tmoc00118,run=222,dir=/sdf/data/lcls/ds/prj/public01/xtc
+---------------------
+Name      | Data Type
+---------------------
+epicsinfo | epicsinfo
+timing    | raw      
+hsd       | raw      
+gmdstr0   | raw    
+etc.  

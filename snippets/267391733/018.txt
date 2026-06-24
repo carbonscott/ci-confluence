@@ -1,0 +1,1 @@
+(ps-4.3.2) psanagpu109 tests $ mpirun -n 3 python livemode.py

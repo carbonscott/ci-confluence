@@ -1,0 +1,4 @@
+>>> import psana
+>>> ds = DataSource(exp='xpptut15', run=1)
+DataSource object at 0x7f...
+This is prose describing the output, not runnable code.

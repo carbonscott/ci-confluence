@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-06-24T00:00:00Z",
+  "source": "fixture-handmade",
+  "pages": [
+    {
+      "page_id": "FIXTURE",
+      "title": "fixture",
+      "url": "https://example.invalid/fixture"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "FIXTURE-001",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 1,
+      "language": "python",
+      "category": "python-lint",
+      "path": "fixture/snippets/ok.py",
+      "n_lines": 10,
+      "anchor": "valid python",
+      "notes": "should PASS"
+    },
+    {
+      "id": "FIXTURE-003",
+      "page_id": "FIXTURE",
+      "page_title": "fixture",
+      "index_on_page": 3,
+      "language": "bash",
+      "category": "shell-lint",
+      "path": "fixture/snippets/ok.sh",
+      "n_lines": 9,
+      "anchor": "valid bash",
+      "notes": "should PASS"
+    }
+  ]
+}
